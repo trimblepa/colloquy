@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @colloquy.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @colloquy.description %>
+</p>
+
+<p>
+  <b>Organization:</b>
+  <%= @colloquy.organization %>
+</p>
+
+<p>
+  <b>Seats:</b>
+  <%= @colloquy.seats %>
+</p>
+
+<p>
+  <b>Open:</b>
+  <%= @colloquy.open %>
+</p>
+
+<p>
+  <b>Close:</b>
+  <%= @colloquy.close %>
+</p>
+
+
+<%= link_to 'Edit', edit_colloquy_path(@colloquy) %> |
+<%= link_to 'Back', colloquies_path %>

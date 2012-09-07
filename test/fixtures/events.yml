@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  colloquy_id: 1
+  name: MyString
+  description: MyText
+  location: MyString
+  start: 2012-09-05 13:00:59
+  stop: 2012-09-05 13:00:59
+
+two:
+  colloquy_id: 1
+  name: MyString
+  description: MyText
+  location: MyString
+  start: 2012-09-05 13:00:59
+  stop: 2012-09-05 13:00:59

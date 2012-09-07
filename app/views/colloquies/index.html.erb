@@ -1,0 +1,33 @@
+<h1>Listing colloquies</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Organization</th>
+    <th>Seats</th>
+    <th>Open</th>
+    <th>Close</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @colloquies.each do |colloquy| %>
+  <tr>
+    <td><%= colloquy.name %></td>
+    <td><%= colloquy.description %></td>
+    <td><%= colloquy.organization %></td>
+    <td><%= colloquy.seats %></td>
+    <td><%= colloquy.open %></td>
+    <td><%= colloquy.close %></td>
+    <td><%= link_to 'Show', colloquy %></td>
+    <td><%= link_to 'Edit', edit_colloquy_path(colloquy) %></td>
+    <td><%= link_to 'Destroy', colloquy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Colloquy', new_colloquy_path %>

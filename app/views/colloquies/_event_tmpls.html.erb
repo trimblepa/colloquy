@@ -1,0 +1,50 @@
+
+    <script id="event_item" type="text/html">
+      <td>{{name}}</td>
+      <td>{{location}}</td>
+      <td>{{description}}</td>
+      <td><span id="zapp"> X </span></td>
+    </script>
+    <script id="event_items_table" type="text/html">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>name</th>
+            <th>location</th>
+            <th>description</th>
+            <th>action</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </script>
+    <script id="event_add_item" type="text/html">
+      <form class="form-horizontal well">
+        <legend>Add an event</legend>
+        <p>{{error}}</p>
+        <div class="control-group">
+          <label class="control-label" for="name">Name</label>
+          <div class="controls">
+            <input name="name" type="text" value="{{name}}" />
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="location">Location</label>
+          <div class="controls">
+            <input name="location" type="text" value="{{location}}" />
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="description">Description</label>
+          <div class="controls">
+            <input name="description" type="text" value="{{description}}" />
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" class="btn" id="add">Add</button>
+          </div>
+        </div>
+      </form>
+    </script>

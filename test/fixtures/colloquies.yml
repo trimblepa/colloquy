@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  description: MyText
+  organization: MyString
+  seats: 1
+  open: 2012-09-05 12:58:29
+  close: 2012-09-05 12:58:29
+
+two:
+  name: MyString
+  description: MyText
+  organization: MyString
+  seats: 1
+  open: 2012-09-05 12:58:29
+  close: 2012-09-05 12:58:29
