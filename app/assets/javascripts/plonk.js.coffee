@@ -36,8 +36,6 @@ Plonk = do ->
       'click #zapp': 'delete'
     delete: =>
       @model.to_delete = true
-      # Todo: doesnot this defeat the whole purpose?
-      @model.collection.changed()
       @$el.remove()
     render: =>
       $(@el).html ich[@model.collection.view.name+'_item'](@model.toJSON())
@@ -49,7 +47,6 @@ Plonk = do ->
       @url = '/events'
       @view = options.view
       @on 'reset', options.view.render
-      @on 'add', @changed
       @fetch()
     persist: =>
       @each (item) =>
@@ -58,12 +55,7 @@ Plonk = do ->
         else if item.isNew()
           item.save [], {silent: true}
       # Todo: wait and fetch?
-      # Todo: would call disable_buttons here
-      #       but willnot work for multicollection
-      #       musst understand bb event bs
       false
-    changed: =>
-      @view.appo.enable_buttons()
 
   class ItemsView extends Backbone.View
     initialize: (options) ->
@@ -71,6 +63,7 @@ Plonk = do ->
       @appo = options.appo
       @collection = new Items([],{view: @})
       console.log options
+      #Backbone.Validation.bind @
     events:
       'click button#add': 'create'
     # Todo: factor how?

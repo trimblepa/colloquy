@@ -2,6 +2,7 @@ Rhizhome::Application.routes.draw do
   resources :colloquies
 
   resources :events
+  resources :categories
   resources :items
 
   # The priority is based upon order of creation:

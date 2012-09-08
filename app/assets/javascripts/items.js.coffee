@@ -6,14 +6,14 @@ $ ->
 
   _.extend Backbone.Validation.callbacks,
     valid: (view, attr, selector) ->
-      control = view.il.find('['+selector+'='+attr+']')
+      control = view.$('['+selector+'='+attr+']')
       group = control.parents(".control-group")
       group.removeClass("error")
       group.find(".help-inline.error-message").remove()
 
     invalid: (view, attr, error, selector) ->
       console.log view, attr, error, selector
-      control = view.il.find('['+selector+'='+attr+']')
+      control = view.$('['+selector+'='+attr+']')
       group = control.parents(".control-group")
       group.addClass("error")
       if group.find(".help-inline").length == 0
@@ -29,34 +29,38 @@ $ ->
       name: {required: true}
     nickname: 'colloquy'
 
-  class AppView extends Backbone.View
+  class ColloquyView extends Backbone.View
     initialize: ->
-      @isv = new Plonk.ITV {appo: @, el: '#items', name: 'event'}
-      # Todo: error callback
       @model = new Colloquy {id: $('body').attr('id')}
+      # Todo: error callback
       @model.fetch success: =>
         @render()
-      #Backbone.Validation.bind @, {selector: 'id'}
       Backbone.Validation.bind @
+    el: $('#uppo')
+    persist: =>
+      new_obj = {}
+      new_obj[i.name] = i.value for i in @$el.find('form').serializeArray()
+      @model.save new_obj
+      false
+    render: =>
+      @$el.empty()
+      @$el.append ich.app_controls(@model.toJSON())
+
+  class AppView extends Backbone.View
+    initialize: ->
+      @collview = new ColloquyView
+      @isv = new Plonk.ITV {appo: @, el: '#items', name: 'event'}
+      @render()
     el: $('#appo')
-    il: $('#uppo')
     events:
       'click button#save': 'persist'
     persist: =>
+      @collview.persist()
       @isv.collection.persist()
-      # Todo: enable here until success checking
-      new_obj = {}
-      new_obj[i.name] = i.value for i in @il.find('form').serializeArray()
-      @model.save new_obj
       false
-    enable_buttons: =>
-      @$el.find('button').removeAttr('disabled')
     render: =>
       @$el.empty()
-      @il.append ich.app_controls(@model.toJSON())
       @$el.append ich.app_buttons()
-      # Todo: unfk
-      @enable_buttons()
 
   # go!
 
