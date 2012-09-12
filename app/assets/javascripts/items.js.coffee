@@ -35,7 +35,7 @@ $ ->
       # Todo: error callback
       @model.fetch success: =>
         @render()
-      Backbone.Validation.bind @
+      #Backbone.Validation.bind @
     el: $('#uppo')
     persist: =>
       new_obj = {}
