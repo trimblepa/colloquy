@@ -1,28 +1,26 @@
 
-    <script id="event_item" type="text/html">
+    <script id="category_item" type="text/html">
       <td>{{name}}</td>
-      <td>{{location}}</td>
       <td>{{description}}</td>
+      <td>{{price}}</td>
       <td><span id="zapp"> X </span></td>
     </script>
-    <script id="event_items_table" type="text/html">
-      <h2>Sessions</h2>
-            <form>
+    <script id="category_items_table" type="text/html">
+      <h2>Participant Categories</h2>
       <table class="table">
         <thead>
           <tr>
             <th>name</th>
-            <th>location</th>
             <th>description</th>
+            <th>price</th>
             <th>action</th>
           </tr>
         </thead>
         <tbody>
         </tbody>
       </table>
-            </form>
     </script>
-    <script id="event_add_item" type="text/html">
+    <script id="category_add_item" type="text/html">
       <form class="form-horizontal well">
         <div class="control-group">
           <label class="control-label" for="name">Name</label>
@@ -31,15 +29,15 @@
           </div>
         </div>
         <div class="control-group">
-          <label class="control-label" for="location">Location</label>
-          <div class="controls">
-            <input name="location" type="text" value="{{location}}" />
-          </div>
-        </div>
-        <div class="control-group">
           <label class="control-label" for="description">Description</label>
           <div class="controls">
             <input name="description" type="text" value="{{description}}" />
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="price">Price</label>
+          <div class="controls">
+            <input name="price" type="text" value="{{price}}" />
           </div>
         </div>
         <div class="control-group">

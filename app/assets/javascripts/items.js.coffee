@@ -21,8 +21,6 @@ $ ->
       target = group.find(".help-inline")
       target.text(error)
 
-  # define top level app
-
   class Colloquy extends Backbone.Model
     urlRoot: '/colloquies'
     validation:
@@ -35,7 +33,7 @@ $ ->
       # Todo: error callback
       @model.fetch success: =>
         @render()
-      #Backbone.Validation.bind @
+      Backbone.Validation.bind @
     el: $('#uppo')
     persist: =>
       new_obj = {}
@@ -49,7 +47,8 @@ $ ->
   class AppView extends Backbone.View
     initialize: ->
       @collview = new ColloquyView
-      @isv = new Plonk.ITV {appo: @, el: '#items', name: 'event'}
+      @isv = new Plonk.ITV {appo: @, el: '#items', name: 'event', url: '/events'}
+      @rsv = new Plonk.ITV {appo: @, el: '#categories', name: 'category', url: '/categories'}
       @render()
     el: $('#appo')
     events:
@@ -57,6 +56,7 @@ $ ->
     persist: =>
       @collview.persist()
       @isv.collection.persist()
+      @rsv.collection.persist()
       false
     render: =>
       @$el.empty()
@@ -65,19 +65,9 @@ $ ->
   # go!
 
   window.apv = new AppView
-
-#  window.posts_view = new ItemsView
-#    url: '/posts'
-#    el: $('#posts'),
-#    default_obj: {title: 'New One', body: 'I like js.'}
-#    save_obj: ->
-#      body: $('#body').val(),
-#      title: $('#title').val()
-#    show_tmpl: (data) -> ich.rule(data)
-#    edit_tmpl: (data) -> ich.edit(data)
-#  window.post = new Items [],
-#    name: 'post'
-#    comparator: (i) ->
-#      -i.get 'pub_date'
-
+  $('#tabster a').click (e) ->
+    console.log e
+    console.log this
+    e.preventDefault()
+    $(this).tab('show')
 

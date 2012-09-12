@@ -1,10 +1,10 @@
-class EventsController < ApplicationController
+class CategoriesController < ApplicationController
   # GET /items
   # GET /items.json
   def index
     logger.debug 'asdfasdfasdfasdfasdfasdfas'
     logger.debug params.inspect
-    @items = Event.where colloquy_id: params['colloquy_id']
+    @items = Category.where colloquy_id: params['colloquy_id']
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class EventsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
-    @item = Event.find(params[:id])
+    @item = Category.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +26,7 @@ class EventsController < ApplicationController
   # GET /items/new
   # GET /items/new.json
   def new
-    @item = Event.new
+    @item = Category.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,17 +36,17 @@ class EventsController < ApplicationController
 
   # GET /items/1/edit
   def edit
-    @item = Event.find(params[:id])
+    @item = Category.find(params[:id])
   end
 
   # POST /items
   # POST /items.json
   def create
-    @item = Event.new(params[:event])
+    @item = Category.new(params[:category])
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: 'Event was successfully created.' }
+        format.html { redirect_to @item, notice: 'Category was successfully created.' }
         format.json { render json: @item, status: :created, location: @item }
       else
         format.html { render action: "new" }
@@ -58,11 +58,11 @@ class EventsController < ApplicationController
   # PUT /items/1
   # PUT /items/1.json
   def update
-    @item = Event.find(params[:id])
+    @item = Category.find(params[:id])
 
     respond_to do |format|
-      if @item.update_attributes(params[:event])
-        format.html { redirect_to @item, notice: 'Event was successfully updated.' }
+      if @item.update_attributes(params[:category])
+        format.html { redirect_to @item, notice: 'Category was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -74,7 +74,7 @@ class EventsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
-    @item = Event.find(params[:id])
+    @item = Category.find(params[:id])
     @item.destroy
 
     respond_to do |format|
