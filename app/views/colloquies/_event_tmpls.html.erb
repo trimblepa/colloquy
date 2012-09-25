@@ -6,8 +6,6 @@
       <td><span id="zapp"> X </span></td>
     </script>
     <script id="event_items_table" type="text/html">
-      <h2>Sessions</h2>
-            <form>
       <table class="table">
         <thead>
           <tr>
@@ -20,7 +18,6 @@
         <tbody>
         </tbody>
       </table>
-            </form>
     </script>
     <script id="event_add_item" type="text/html">
       <form class="form-horizontal well">
@@ -40,6 +37,24 @@
           <label class="control-label" for="description">Description</label>
           <div class="controls">
             <input name="description" type="text" value="{{description}}" />
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="date">Date</label>
+          <div class="controls">
+            <input name="date" type="text" value="{{date}}" placeholder="YYYY-MM-DD"/>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="starttime">Start</label>
+          <div class="controls">
+            <input name="starttime" type="text" value="{{starttime}}" placeholder="HH:MM" />
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="stop">Stop</label>
+          <div class="controls">
+            <input name="stop" type="text" value="{{stop}}" placeholder="HH:MM" />
           </div>
         </div>
         <div class="control-group">

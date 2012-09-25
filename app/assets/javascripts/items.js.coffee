@@ -12,7 +12,7 @@ $ ->
       group.find(".help-inline.error-message").remove()
 
     invalid: (view, attr, error, selector) ->
-      console.log view, attr, error, selector
+      console.log 'invalid', view, attr, error, selector
       control = view.$('['+selector+'='+attr+']')
       group = control.parents(".control-group")
       group.addClass("error")
@@ -24,7 +24,8 @@ $ ->
   class Colloquy extends Backbone.Model
     urlRoot: '/colloquies'
     validation:
-      name: {required: true}
+      name: {required: true},
+      seats: {pattern: 'number'}
     nickname: 'colloquy'
 
   class ColloquyView extends Backbone.View
@@ -47,7 +48,7 @@ $ ->
   class AppView extends Backbone.View
     initialize: ->
       @collview = new ColloquyView
-      @isv = new Plonk.ITV {appo: @, el: '#items', name: 'event', url: '/events'}
+      @isv = new Plonk.ITV {appo: @, el: '#items', name: 'event', url: '/events', valid: {name: {required: true}, location: {required: true}, date: {required: true, pattern: /^\d{4}-\d{2}-\d{2}$/}, starttime: {required: true, pattern: /^\d{2}:\d{2}$/}}}
       @rsv = new Plonk.ITV {appo: @, el: '#categories', name: 'category', url: '/categories'}
       @render()
     el: $('#appo')

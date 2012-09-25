@@ -24,8 +24,8 @@ Plonk = do ->
   class Item extends Backbone.Model
     initialize: ->
       @view = new ItemView {model: @}
-    validation:
-      name: {required: true}
+    #validation:
+    #  name: {required: true}
 
   class ItemView extends Backbone.View
     tagName: 'tr'
@@ -46,10 +46,21 @@ Plonk = do ->
     create: =>
       new_obj = {colloquy_id: @collection.view.parent_id}
       new_obj[i.name] = i.value for i in @$el.find('form').serializeArray()
+      # semi-brutal hack to reform datetime string suitable for rails
+      new_obj.start = new_obj.date+' '+new_obj.starttime
+
+
+
+
       if @model.set new_obj
         @collection.add @model
         @collection.view.$el.find('table tbody').append(@model.view.render().el)
-        @model = new Item
+        # Todo: overide constructor or summat
+        item = new Item
+        item.validation = @collection.view.options.valid
+        @model = item
+        # Note: must rebind new item!!! maybe we should reuse?
+        Backbone.Validation.bind @
         @render()
       else
         console.log 'invalid'
@@ -80,7 +91,10 @@ Plonk = do ->
       @name = options.name
       @appo = options.appo
       @collection = new Items([],{view: @, url: options.url})
-      @edv = new EditItemView {model: new Item, collection: @collection}
+      # Todo: overide constructor or summat
+      item = new Item
+      item.validation = options.valid
+      @edv = new EditItemView {model: item, collection: @collection}
     render: =>
       @$el.empty()
       @$el.append ich[@name+'_items_table']()
